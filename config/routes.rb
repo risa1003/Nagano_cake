@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'homes#top'
-  get 'home/about' => 'homes#about', as: 'about'
+  namespace :admin do
+    resources :items
+  end
 
 # 顧客用
 # URL /customers/sign_in ...
