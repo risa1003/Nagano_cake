@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      book
+    attributes:
+      book:
+        title: タイトル
+        body: テキスト
+        status: ステータス
+      book/status:
+        draft: 下書き
+        free_pub: 無料で公開
+        paid_pub: 有料で公開
