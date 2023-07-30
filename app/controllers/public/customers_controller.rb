@@ -13,6 +13,7 @@ class Public::CustomersController < ApplicationController
       redirect_to customer_path(@customer.id)
     else
     render :edit
+    end
   end
 
   def check
