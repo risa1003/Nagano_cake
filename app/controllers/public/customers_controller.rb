@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  def show
+  def show #リンク名はmypage
     @customer = Customer.find(params[:id])
   end
 
@@ -20,5 +20,9 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+    @customer = Customer.find(params[:id])
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 end

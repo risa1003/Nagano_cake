@@ -1,27 +1,21 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-    get 'genres/create'
-    get 'genres/update'
-  end
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-    get 'addresses/update'
-    get 'addresses/destroy'
-  end
+  #会員側のルーティング設定
+  root_to: 'homes#top'
+  get 'orders/new'
+  get 'cart_items/index'
+  get 'cart_items/update'
+  get 'cart_items/destroy'
+  get 'cart_items/destroy_all'
+  get 'cart_items/create'
+
+  #管理者側のルーティング設定
   namespace :admin do
     get 'orders/show'
     get 'orders/update'
-  end
-  namespace :admin do
     get 'customers/index'
     get 'customers/show'
     get 'customers/edit'
     get 'customers/update'
-  end
-  namespace :admin do
     get 'items/index'
     get 'items/new'
     get 'items/create'
@@ -29,16 +23,16 @@ Rails.application.routes.draw do
     get 'items/edit'
     get 'items/update'
   end
-  namespace :public do
-    get 'orders/new'
-  end
-  get 'cart_items/index'
-  get 'cart_items/update'
-  get 'cart_items/destroy'
-  get 'cart_items/destroy_all'
-  get 'cart_items/create'
+
   namespace :admin do
     resources :items
+  end
+
+   # 会員側のルーティング設定
+  get 'items' => 'public/items#index'
+  # 管理者側のルーティング設定
+  namespace :admin do
+    get 'items' => 'admin/items#index'
   end
 
 # 顧客用
