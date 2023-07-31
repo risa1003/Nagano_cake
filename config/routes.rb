@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'genres/index'
+    get 'genres/edit'
+    get 'genres/create'
+    get 'genres/update'
+  end
+  namespace :public do
+    get 'addresses/index'
+    get 'addresses/edit'
+    get 'addresses/update'
+    get 'addresses/destroy'
+  end
+  namespace :admin do
     get 'orders/show'
     get 'orders/update'
   end
