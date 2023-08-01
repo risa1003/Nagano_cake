@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   #会員側のルーティング設定
-  root_to: 'homes#top'
+  scope module: :public do
+  root 'homes#top'
   get 'orders/new'
   get 'cart_items/index'
   get 'cart_items/update'
   get 'cart_items/destroy'
   get 'cart_items/destroy_all'
   get 'cart_items/create'
+  patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
+  get 'check' => 'customers#check', as: 'check'
+  end
 
   #管理者側のルーティング設定
   namespace :admin do
@@ -16,23 +20,7 @@ Rails.application.routes.draw do
     get 'customers/show'
     get 'customers/edit'
     get 'customers/update'
-    get 'items/index'
-    get 'items/new'
-    get 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
-  end
-
-  namespace :admin do
     resources :items
-  end
-
-   # 会員側のルーティング設定
-  get 'items' => 'public/items#index'
-  # 管理者側のルーティング設定
-  namespace :admin do
-    get 'items' => 'admin/items#index'
   end
 
 # 顧客用

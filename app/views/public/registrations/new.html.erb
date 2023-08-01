@@ -1,26 +1,26 @@
 <h2>新規会員登録</h2>
 
-<%= form_with model: @customer, url: new_customer_registration_path do |f| %>
+<%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :last_name, "(姓)" %>
-    <%= last_name.field :last_name %>
+    <%= f.text_field :last_name %>
   </div>
 
   <div class="field">
     <%= f.label :first_name, "(名)" %>
-    <%= first_name.field :first_name %>
+    <%= f.text_field :first_name %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name_kana, "(姓カナ)" %>
-    <%= last_name_kana.field :last_name_kana %>
+    <%= f.label :lase_name_kana, "(姓カナ)" %>
+    <%= f.text_field :lase_name_kana %>
   </div>
 
   <div class="field">
     <%= f.label :first_name_kana, "(名カナ)" %>
-    <%= first_name_kana.field :first_name_kana %>
+    <%= f.text_field :first_name_kana %>
   </div>
 
   <div class="field">
@@ -30,17 +30,17 @@
 
   <div class="field">
     <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-    <%= postal_code.field :postal_code %>
+    <%= f.text_field :postal_code %>
   </div>
 
   <div class="field">
     <%= f.label :address, "住所" %>
-    <%= address.field :address %>
+    <%= f.text_field :address %>
   </div>
 
   <div class="field">
     <%= f.label :telephone_number, "電話番号(ハイフンなし)" %>
-    <%= telephone_number.field :telephone_number %>
+    <%= f.text_field :telephone_number %>
   </div>
 
   <div class="field">
