@@ -1,0 +1,16 @@
+<h2>会員情報編集</h2>
+<%= form_with model: @customer, url: edit_customer_path do |f| %>
+  <%= render "public/shared/error_messages", resource: resource %>
+  
+  <div class="field">
+    <%= f.label :
+  </div>
+<% end %>
+
+
+
+
+  <div class="field">
+    <%= f.label :last_name, "(姓)" %>
+    <%= f.text_field :last_name %>
+  </div>
