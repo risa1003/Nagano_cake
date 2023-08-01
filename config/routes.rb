@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about'
-    resources :customers, :cart_items, :addresses, :orders
+    resources :items, :customers, :cart_items, :addresses, :orders
     get 'cart_items/destroy_all'
     patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
     get 'check' => 'customers#check', as: 'check'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   #管理者側のルーティング設定
   namespace :admin do
+    #root 'homes#top'
     resources :items, :customers, :orders, :order_details, :genres
   end
 
