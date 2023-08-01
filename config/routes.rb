@@ -1,26 +1,19 @@
 Rails.application.routes.draw do
   #会員側のルーティング設定
   scope module: :public do
-  root 'homes#top'
-  get 'orders/new'
-  get 'cart_items/index'
-  get 'cart_items/update'
-  get 'cart_items/destroy'
-  get 'cart_items/destroy_all'
-  get 'cart_items/create'
-  patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
-  get 'check' => 'customers#check', as: 'check'
+    root 'homes#top'
+    get 'about' => 'homes#about'
+    resources :customers, :cart_items, :addresses, :orders
+    get 'cart_items/destroy_all'
+    patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
+    get 'check' => 'customers#check', as: 'check'
+    post 'confirm' => 'orders#confirm', as: 'confirm'
+    get 'thanks' => 'orders#thanks', as: 'thanks'
   end
 
   #管理者側のルーティング設定
   namespace :admin do
-    get 'orders/show'
-    get 'orders/update'
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    resources :items
+    resources :items, :customers, :orders, :order_details, :genres
   end
 
 # 顧客用
