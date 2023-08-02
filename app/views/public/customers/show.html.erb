@@ -2,7 +2,7 @@
 <h3 class="font-weight-bold">登録情報</h3> <%= link_to '編集する', edit_customer_path, class: 'btn btn-success' %>
   <table>
     <tbody>
-    <% @customers.each do |f| %>
+    <% @customer.each do |f| %>
       <tr>
         <tb>氏名</tb>
         <td><%= customer.last_name %>　<%= customer.first_name %></td>
@@ -31,6 +31,6 @@
     </tbody>
   </table>
 
-<h3 class="font-weight-bold">配送先</h3> <%= link_to '一覧を見る', address_path, class: 'btn btn-primary' %>
+<h3 class="font-weight-bold">配送先</h3> <%= link_to '一覧を見る', addresses_path, class: 'btn btn-primary' %>
 
 <h3 class="font-weight-bold">注文履歴</h3> <%= link_to '一覧を見る', orders_path, class: 'btn btn-primary' %>
