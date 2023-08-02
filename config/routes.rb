@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'about' => 'homes#about'
     resources :items, :customers, :cart_items, :addresses, :orders
-    get 'mypage', to: 'public/customers#show', as: :customer
+    #get 'mypage', to: 'public/customers#show', as: :customer
     get 'cart_items/destroy_all'
     patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
     get 'check' => 'customers#check', as: 'check'
