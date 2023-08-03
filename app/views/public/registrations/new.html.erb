@@ -4,28 +4,24 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label "名前" %>
     <%= f.label :last_name, "(姓)" %>
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
+    <%= f.text_field :last_name, autofocus: true %>
     <%= f.label :first_name, "(名)" %>
     <%= f.text_field :first_name %>
   </div>
 
   <div class="field">
+    <%= f.label "フリガナ" %>
     <%= f.label :last_name_kana, "(姓カナ)" %>
     <%= f.text_field :last_name_kana %>
-  </div>
-
-  <div class="field">
     <%= f.label :first_name_kana, "(名カナ)" %>
     <%= f.text_field :first_name_kana %>
   </div>
 
   <div class="field">
     <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <div class="field">

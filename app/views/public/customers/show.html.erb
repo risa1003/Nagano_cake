@@ -1,5 +1,6 @@
 <h2>マイページ</h2>
-<h3 class="font-weight-bold">登録情報</h3> <%= link_to '編集する', edit_customer_path, class: 'btn btn-success' %>
+<h3 class="font-weight-bold">登録情報</h3>
+<%= link_to '編集する', edit_customer_path, class: 'btn btn-success' %>
   <table>
     <tbody>
     <% @customer.each do |f| %>

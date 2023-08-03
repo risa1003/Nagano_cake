@@ -1,16 +1,16 @@
 class Public::CustomersController < ApplicationController
   def show #リンク名はmypage
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def update
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     if @Customer.update(customer_params)
-      redirect_to customer_path(@customer.id)
+      redirect_to mypage_path(@customer.id)
     else
     render :edit
     end

@@ -1,37 +1,36 @@
 <h2>会員情報編集</h2>
-<%= form_with model: @customer, url: edit_customer_path do |f| %>
+<%= form_with model: @customer do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
-    
-    <%= f.label :last_name, "(姓)" %>
-    <%= f.text_field :last_name %>
+    <%= f.label "氏名" %>
+    <%= text_field :lase_name, autofocus: true %>
+    <%= text_field :first_name %>
   </div>
-<% end %>
-
-
-
 
   <div class="field">
-    <%= f.label :last_name, "(姓)" %>
-    <%= f.text_field :last_name %>
+    <%= f.label "フリガナ" %>
+    <%= text_field :last_name_kana %>
+    <%= text_field :first_name_kana %>
   </div>
 
-<%= form_with model: @user do |f| %>
-  <div class="form-group">
-    <%= f.label :full_name, "名前" %>
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.text_field :last_name, class: "form-control" %>
-      </div>
-      <div class="col-md-6">
-        <%= f.text_field :first_name, class: "form-control" %>
-      </div>
-    </div>
+  <div class="field">
+    <%= f.label :postal_code, "郵便番号" %>
+    <%= f.text_field :postal_code %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :phone_number, "電話番号" %>
-    <%= f.text_field :phone_number, class: "form-control" %>
+  <div class="field">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telephone_number, "電話番号" %>
+    <%= f.text_field :telephone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 <% end %>
