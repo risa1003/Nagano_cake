@@ -4,13 +4,13 @@ class Admin::ItemsController < ApplicationController
   end
 
   def new
-    @item = item.new
+    @item = Item.new
   end
 
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to item_path(@item.id)
+    redirect_to admin_item_path(@item.id)
   end
 
   def show
@@ -27,4 +27,10 @@ class Admin::ItemsController < ApplicationController
     @item.update(item_params)
     redirect_to item_path(@item.id)
   end
+end
+
+private
+
+def item_params
+  params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_sold)
 end

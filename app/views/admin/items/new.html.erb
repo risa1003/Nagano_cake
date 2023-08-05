@@ -1,5 +1,5 @@
 <h2>商品新規登録</h2>
-<%= form_with model: @item do |f| %>
+<%= form_with model: @item, url: admin_items_path do |f| %>
   <div class="field">
     <%= f.label :image, "商品画像" %>
     <%= f.file_field :image, accept: "image/*" %>
@@ -7,25 +7,27 @@
 
   <div class="field">
     <%= f.label :name, "商品名" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: "商品名" %>
   </div>
 
   <div class="field">
     <%= f.label :introduction, "商品説明" %>
-    <%= f.text_area :introduction %>
+    <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
   </div>
 
   <div class="field">
     <%= f.label :genre, "ジャンル" %>
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "--選択してください--" %>
   </div>
 
   <div class="field">
     <%= f.label :price, "税抜価格" %>
+    <%= f.text_field :price, placeholder: "1000" %>
   </div>
 
   <!-- 販売ステータス -->
   <div class="field">
+    <%= f.label :is_sold, "販売ステータス" %>
     <%= f.radio_button :is_sold, "true" %>
     <%= f.label :is_sold_true, "販売中" %>
     <%= f.radio_button :is_sold, "false" %>
