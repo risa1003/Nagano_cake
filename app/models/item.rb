@@ -12,4 +12,8 @@ class Item < ApplicationRecord
    profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  def price_with_tax
+    tax_rate = 0.1
+    (price * (1 + tax_rate)).to_i
+  end
 end
