@@ -4,6 +4,13 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_one_attached :image
 
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :introduction, presence: true
+  #validates :genre, presence: true
+  validates :price, presence: true
+  validates :is_sold, presence: true
+
   def get_item_image(width, height)
   #unless item_image.attached?
     #file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
