@@ -1,11 +1,32 @@
-<h2>商品詳細</h2>
+<h3 class="bg-6B7280">商品詳細</h3>
 
-<div>
-  <%= image_tag @item.image, size: "350x250" %>
-  <p>商品名 <%= @item.name %></p>
-  <p>商品説明 <%= @item.introduction %></p>
-  <p>ジャンル <%= @item.genre.name %></p>
-  <p>税込価格(税抜価格) <%= @item.price_with_tax %>(<%= @item.price %>)円</p>
-  <p>販売ステータス</p><p class="<%= @item.is_sold ? 'text-success' : 'text-secondary' %> font-weight-bold"><%= @item.is_sold ? '販売中' : '販売停止中' %></p>
+  <div>
+    <%= image_tag @item.image, size: "350x250" %>
+  </div>
+
+  <table>
+    <tbody>
+      <tr>
+        <th class="font-weight-normal">商品名</th>
+        <td><%= @item.name %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-normal">商品説明</th>
+        <td><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-normal">ジャンル</th>
+        <td><%= @item.genre.name %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-normal">税込価格(税抜価格)</th>
+        <td><%= @item.price_with_tax %>(<%= @item.price %>)円</td>
+      </tr>
+      <tr>
+        <th class="font-weight-normal">販売ステータス</th>
+        <td class="<%= @item.is_sold ? 'text-success' : 'text-secondary' %> font-weight-bold"><%= @item.is_sold ? '販売中' : '販売停止中' %></td>
+      </tr>
+    </tbody>
+  </table>
+
   <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success" %>
-</div>
