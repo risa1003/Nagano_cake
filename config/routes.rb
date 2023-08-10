@@ -22,7 +22,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     patch 'customers/introduction' => 'customers#update', as: 'customer'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     get 'customers/check' => 'customers#check', as: 'check'
-    get 'destroy_all' => 'cart_items#destroy_all'
+    delete 'destroy_all' => 'cart_items#destroy_all'
     post 'confirm' => 'orders#confirm', as: 'confirm'
     get 'thanks' => 'orders#thanks', as: 'thanks'
   end

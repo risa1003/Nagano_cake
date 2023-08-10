@@ -18,10 +18,10 @@ class Admin::GenresController < ApplicationController
     @genre.update(genre_params)
     redirect_to admin_genres_path(@genre.id)
   end
-end
 
-private
+  private
 
-def genre_params
-  params.require(:genre).permit(:name)
+  def genre_params
+    params.require(:genre).permit(:name)
+  end
 end

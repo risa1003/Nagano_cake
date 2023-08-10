@@ -12,7 +12,7 @@ class Public::CustomersController < ApplicationController
     if @Customer.update(customer_params)
       redirect_to mypage_path(@customer.id)
     else
-    render :edit
+      render :edit
     end
   end
 
@@ -24,5 +24,9 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_deleted: true)
     reset_session
     redirect_to root_path
+  end
+
+  def customer_params
+    params.require(:customer).permit(:email, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted)
   end
 end
