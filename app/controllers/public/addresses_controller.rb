@@ -9,16 +9,17 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
-    @address.save
+    if @address.save
+      redirect_to addresses_path, notice: '新しい配送先が登録されました。'
+    else
+      flash.now[:error] = @address.errors.full_messages.join(', ')
+      @addresses = Address.all
+      render :index
+    end
   end
 
+
   def update
-    @customer = current_customer
-    if @Customer.update(customer_params)
-      redirect_to mypage_path(@customer.id)
-    else
-      render :edit
-    end
   end
 
   def destroy
