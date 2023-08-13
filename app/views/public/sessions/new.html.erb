@@ -2,6 +2,15 @@
 
   <h3>会員の方はこちらからログイン</h3>
 
+  <% if @customer.errors.any? %>
+    <%= @customer.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
     <%= form_with model: @customer, url: new_customer_session_path do |f| %>
       <div class="field">
         <%= f.label :email, "メールアドレス" %>
@@ -28,4 +37,4 @@
   <h3>会員登録がお済みでない方</h3>
     <p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</p>
 
-<%#= render "public/shared/links" %>
+<%= render "public/shared/links" %>

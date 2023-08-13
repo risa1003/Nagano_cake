@@ -1,6 +1,7 @@
-<h2>ジャンル編集</h2>
-<%= form_with model: @genre, url: admin_genre_path do |f| %>
-  <%= f.label :name, "ジャンル名" %>
-  <%= f.text_field :name, autofocus: true %>
-  <%= f.submit "変更を保存", class: "btn btn-success" %>
-<% end %>
+<!-- タイトル背景はCSSで変更する必要あり -->
+<h5 class="bg-6B7280">ジャンル編集</h5>
+  <%= form_with model: @genre, url: admin_genre_path do |f| %>
+    <%= f.label :name, "ジャンル名" %>
+    <%= f.text_field :name, autofocus: true %>
+    <%= f.submit "変更を保存", class: "btn btn-success" %>
+  <% end %>

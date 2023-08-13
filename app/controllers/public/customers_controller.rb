@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    if @Customer.update(customer_params)
+    if @customer.update(customer_params)
       redirect_to mypage_path(@customer.id)
     else
       render :edit
