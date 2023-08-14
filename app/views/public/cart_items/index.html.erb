@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </thead>
+  <tbody>
+  <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td>
+        <%= image_tag cart_item.item.get_item_image(30, 40) %>
+        <%= cart_item.item.name %>
+      </td>
+      <td><%= cart_item.item.price_with_tax %></td>
+      <td><%= cart_item.select :amount, [1,2,3,4,5,6,7,8,9,10] %></td>
+      <td><%= cart_item.subtotal %></td>
+        <%# @total_amount += cart_item.subtotal %>
+    </tr>
+  <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <tf>合計金額</tf>
+      <td><%= @total_amount %></td>
+    </tr>
+  </tfoot>
+</table>

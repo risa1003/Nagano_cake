@@ -1,10 +1,12 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = Cart_items.all
+    @cart_item = CartItem.new
+    @cart_items = CartItem.all
+    @total_amount = @cart_items.sum(&:subtotal)
   end
 
   def update
-    @cart_item = Cart_item.find(params[:id])
+    @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
       redirect_to cart_items_path(cart_item.id)
     else
@@ -13,7 +15,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    cart_item = Cart_item.find(params[:id])
+    cart_item = CartItem.find(params[:id])
     cart_item.destroy
     redirect_to cart_items_path(cart_item.id)
   end
@@ -22,7 +24,15 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = Cart_items.new(cart_item_params)
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
     @cart_item.save
+    redirect_to cart_items_path
+  end
+
+  private
+
+  def cart_item_params
+    params.require(:cart_item).permit(:item_id, :amount)
   end
 end
