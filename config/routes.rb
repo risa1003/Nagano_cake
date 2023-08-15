@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'homes/top'
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -29,7 +30,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   #管理者側のルーティング設定
   namespace :admin do
-    #root 'homes#top'
+    root 'homes#top', as: :admin_root
     resources :items, :customers, :orders, :order_details, :genres
   end
 
