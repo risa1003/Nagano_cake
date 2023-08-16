@@ -30,7 +30,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   #管理者側のルーティング設定
   namespace :admin do
-    root 'homes#top', as: :admin_root
+    root 'homes#top', as: :root
     resources :items, :customers, :orders, :order_details, :genres
   end
 
