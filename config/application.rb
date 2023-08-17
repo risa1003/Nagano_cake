@@ -11,8 +11,7 @@ module NaganoCake
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    #enumで日本語を使用するために追加
-    #config.i18n.default_locale = :ja
+    config.i18n.default_locale = :ja
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
