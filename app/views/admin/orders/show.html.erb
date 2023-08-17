@@ -3,7 +3,7 @@
 
   <% @order.each do |f| %>
     <div class="field">
-      <%= f.label, "購入者" %>
+      <%= f.label, "購入者", class: "font-weight-bold" %>
       <%= f.customer.last_name %> <%= f.customer.first_name %>
     </div>
 
@@ -24,7 +24,37 @@
     </div>
 
     <div class="field">
-      <%= f.label, "注文ステータス" %>
-      <%= f.status %>
+      <%= form_with model: @order, url: order_path(order.id) do |f| %>
+        <%= f.label, "注文ステータス" %>
+        <%= f.select :status, options_from_collection_for_select(Order.all, :id, :status) %>
+        <%= f.submit "更新", class: "btn btn-success" %>
+      <% end %>
     </div>
   <% end %>
+
+  <table class="table">
+    <thead>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+      <th></th>
+    </thead>
+    <tbody>
+    <% @order_details.each do |f| %>
+      <tr>
+        <td><%= f.item.name %></td>
+        <td><%= f.amount %></td>
+        <td><%= price_tax_in %></td>
+        <%= form_with model: @order_detail, url: admin_order_detail(order_detail.id) %>
+          <td><%= f.select :product_status, options_from_collection_for_select(Order_details.all, :id, :product_status) %></td>
+          <td><%= f.submit "更新", class: "btn btn-success" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+  </table>
