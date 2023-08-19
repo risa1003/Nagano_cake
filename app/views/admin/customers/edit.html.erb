@@ -1,7 +1,7 @@
 <!-- タイトル背景はCSSで変更する必要あり -->
-<h3 class="bg-6B7280">
+<h5 class="bg-6B7280">
   <%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
-</h3>
+</h5>
 
 <%= form_with model: @customer, url: admin_customer_path do |f| %>
   <div class="field">
