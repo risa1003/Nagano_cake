@@ -9,9 +9,9 @@
   </tbody>
 </table>
 
-<h1>商品一覧(全<%= @items.count %>件)</h1>
+<h5>商品一覧(全<%= @items.count %>件)</h5>
   <div>
-  <%= @items.each do |item| %>
+  <% @items.each do |item| %>
     <div>
       <p>
       <%= link_to item_path(item.id) do %>
