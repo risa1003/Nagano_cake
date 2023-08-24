@@ -25,7 +25,7 @@
     <tfoot>
       <tr>
         <td>送料</td>
-        <td>800</td>
+        <td><%= @order.postage %></td>
       </tr>
       <tr>
         <td>商品合計</td>
@@ -43,5 +43,15 @@
   </div>
 
   <div class="actions">
-    <%= link_to "注文を確定する", orders_path, method: :post, class: "btn btn-success" %>
+    <%= form_with model: Order.new, method: :post,url: orders_path do |f| %>
+      <% f.hidden_field :customer_id, value: @order.customer_id %>
+      <% f.hidden_field :postage, value: @order.postage %>
+      <% f.hidden_field :total_payment, value: @order.total_payment %>
+      <% f.hidden_field :payment_type, value: @order.payment_type %>
+      <% f.hidden_field :status, value: @order.status %>
+      <% f.hidden_field :postal_code, value: @order.postal_code %>
+      <% f.hidden_field :address, value: @order.address %>
+      <% f.hidden_field :receiver_name, value: @order.receiver_name %>
+      <%= f.submit "注文を確定する", class: "btn btn-success" %>
+    <% end %>
   </div>

@@ -5,6 +5,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm #要確認
     @order = Order.new(order_params)
+    @new_order = Order.new
     if params[:order][:select_address] == "1"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -21,8 +22,10 @@ class Public::OrdersController < ApplicationController
     # else
     #   render 'new'
     end
+    @order.postage = 800
     @cart_items = current_customer.cart_items.all
     @total_amount = @cart_items.sum(&:subtotal)
+    @order.total_payment = @total_amount
   end
 
   def thanks
@@ -30,9 +33,19 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    #もしかしたらここでnewではないかも？confirmでsaveしてるから
-    @order.customer_id = current_customer.id
+    #@order.customer_id = current_customer.id
     @order.save
+
+    current_customer.cart_items.each do |cart_item|
+      @order_details = OrderDetails.new
+      @order_details.item_id = cart_item.item_id
+      @order_details.amount = cart_item.amount
+      @order_details.price_tax_in = (cart_item.item.price*1.10).floor
+      @order_details.order_id = @order.id
+      @order_details.save
+    end
+
+    current_customer.cart_items.destroy_all
     redirect_to thanks_path
   end
 
@@ -47,6 +60,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_type, :address, :postal_code, :receiver_name)
+    params.permit(:payment_type, :address, :postal_code, :receiver_name, :postage, :total_payment, :status, :customer_id)
   end
 end
