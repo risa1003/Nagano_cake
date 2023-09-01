@@ -21,7 +21,7 @@
         <%= order.receiver_name %>
         </td>
         <td><% order.order_details.each do |detail| %>
-              <%= detail.item.name %><br>
+              <%= detail.item.name %>
             <% end %>
         </td>
         <td><%= order.total_payment %></td>
