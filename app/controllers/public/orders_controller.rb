@@ -58,7 +58,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = current_customer.orders.find(params[:id])
     @cart_items = current_customer.cart_items.all
-    @total_amount = @cart_items.sum(&:suåbtotal)
+    @total_amount = @cart_items.sum(&:subtotal)
   end
 
   private

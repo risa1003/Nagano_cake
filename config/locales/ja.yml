@@ -7,7 +7,7 @@ ja:
       status:
         pending_payment: "入金待ち"
         payment_confirmed: "入金確認"
-        in_progress: "制作中"
+        in_progress: "製作中"
         preparing_to_ship: "発送準備中"
         shipped: "発送済み"
   activerecord:
