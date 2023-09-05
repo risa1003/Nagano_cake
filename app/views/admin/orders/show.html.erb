@@ -3,29 +3,29 @@
 
   <% @order.each do |f| %>
     <div class="field">
-      <%= f.label, "購入者", class: "font-weight-bold" %>
+      <%= f.label "購入者", class: "font-weight-bold" %>
       <%= f.customer.last_name %> <%= f.customer.first_name %>
     </div>
 
     <div class="field">
-      <%= f.label, "注文日" %>
+      <%= f.label "注文日" %>
       <%= f.created_at.strftime('%Y/%m/%d') %>
     </div>
 
     <div class="field">
-      <%= f.label, "配送先" %>
+      <%= f.label "配送先" %>
       〒<%= f.postal_code %><%= f.address %>
       <%= f.receiver_name %>
     </div>
 
     <div class="field">
-      <%= f.label, "支払方法" %>
+      <%= f.label "支払方法" %>
       <%= f.payment_type %>
     </div>
 
     <div class="field">
       <%= form_with model: @order, url: order_path(order.id) do |f| %>
-        <%= f.label, "注文ステータス" %>
+        <%= f.label "注文ステータス" %>
         <%= f.select :status, options_from_collection_for_select(Order.all, :id, :status) %>
         <%= f.submit "更新", class: "btn btn-success" %>
       <% end %>
@@ -46,7 +46,7 @@
       <tr>
         <td><%= f.item.name %></td>
         <td><%= f.amount %></td>
-        <td><%= price_tax_in %></td>
+        <td><%= f.price_tax_in %></td>
         <%= form_with model: @order_detail, url: admin_order_detail(order_detail.id) %>
           <td><%= f.select :product_status, options_from_collection_for_select(Order_details.all, :id, :product_status) %></td>
           <td><%= f.submit "更新", class: "btn btn-success" %></td>
