@@ -30,7 +30,6 @@
         <%= f.submit "更新", class: "btn btn-success" %>
       <% end %>
     </div>
-  <% end %>
 
   <table class="table">
     <thead>
@@ -56,16 +55,17 @@
     </tbody>
     <tfoot>
       <tr>
-        <td>商品合計</td>
-        <td></td>
+        <th>商品合計</th>
+        <td><%= @order.total_payment %></td>
       </tr>
       <tr>
-        <td>送料</td>
-        <td></td>
+        <th>送料</th>
+        <td><%= @order.postage %></td>
       </tr>
       <tr>
-        <td>請求金額合計</td>
-        <td></td>
+        <th>請求金額合計</th>
+        <td><%= @order.total_payment + @order.postage %></td>
       </tr>
     </tfoot>
+  <% end %>
   </table>

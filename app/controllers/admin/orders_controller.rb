@@ -1,6 +1,8 @@
 class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
+    @total_amount = @cart_items.sum(&:subtotal)
+    @order.total_payment = @total_amount
   end
 
   def update
@@ -11,5 +13,5 @@ class Admin::OrdersController < ApplicationController
       @order_details.update_all(status: 1) if @order.status == "payment_confirmed"
     end
   end
-  
+
 end
