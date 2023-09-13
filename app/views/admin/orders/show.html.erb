@@ -1,30 +1,29 @@
 <!-- タイトル背景はCSSで変更する必要あり -->
 <h5 class="bg-6B7280">注文履歴詳細</h5>
 
-  <% @order.each do |f| %>
     <div class="field">
-      <%= f.label "購入者", class: "font-weight-bold" %>
-      <%= f.customer.last_name %> <%= f.customer.first_name %>
+      <p class="font-weight-bold">購入者</p>
+      <%= @order.customer.last_name %> <%= @order.customer.first_name %>
     </div>
 
     <div class="field">
-      <%= f.label "注文日" %>
-      <%= f.created_at.strftime('%Y/%m/%d') %>
+      <p class="font-weight-bold">注文日</p>
+      <%= @order.created_at.strftime('%Y/%m/%d') %>
     </div>
 
     <div class="field">
-      <%= f.label "配送先" %>
-      〒<%= f.postal_code %><%= f.address %>
-      <%= f.receiver_name %>
+      <p class="font-weight-bold">配送先</p>
+      〒<%= @order.postal_code %><%= @order.address %>
+      <%= @order.receiver_name %>
     </div>
 
     <div class="field">
-      <%= f.label "支払方法" %>
-      <%= f.payment_type %>
+      <p class="font-weight-bold">支払方法</p>
+      <%= @order.payment_type %>
     </div>
 
     <div class="field">
-      <%= form_with model: @order, url: order_path(order.id) do |f| %>
+      <%= form_with model: @order, url: order_path(@order.id) do |f| %>
         <%= f.label "注文ステータス" %>
         <%= f.select :status, options_from_collection_for_select(Order.all, :id, :status) %>
         <%= f.submit "更新", class: "btn btn-success" %>
@@ -41,12 +40,12 @@
       <th></th>
     </thead>
     <tbody>
-    <% @order_details.each do |f| %>
+    <% @order_details.each do |order_detail| %>
       <tr>
-        <td><%= f.item.name %></td>
-        <td><%= f.amount %></td>
-        <td><%= f.price_tax_in %></td>
-        <%= form_with model: @order_detail, url: admin_order_detail(order_detail.id) %>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.price_tax_in %></td>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
           <td><%= f.select :product_status, options_from_collection_for_select(Order_details.all, :id, :product_status) %></td>
           <td><%= f.submit "更新", class: "btn btn-success" %></td>
         <% end %>
@@ -67,5 +66,4 @@
         <td><%= @order.total_payment + @order.postage %></td>
       </tr>
     </tfoot>
-  <% end %>
   </table>

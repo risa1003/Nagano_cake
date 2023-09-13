@@ -1,8 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
-    @total_amount = @cart_items.sum(&:subtotal)
-    @order.total_payment = @total_amount
+    @order_details = @order.order_details
   end
 
   def update
