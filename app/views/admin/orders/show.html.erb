@@ -24,7 +24,7 @@
 
     <div class="field">
       <p class="font-weight-bold">注文ステータス</p>
-      <%= form_with model: @order, url: order_path(@order.id) do |f| %>
+      <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
         <%= f.select :status, Order.statuses.keys.map{|k| [I18n.t("enums.order.status.#{k}"),k]} %>
         <%= f.submit "更新", class: "btn btn-success" %>
       <% end %>
@@ -48,6 +48,7 @@
         <td><%= order_detail.subtotal %></td>
         <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
           <td><%= f.select :product_status, OrderDetail.product_statuses.keys.map{|k| [I18n.t("enums.order_detail.product_status.#{k}"),k]} %></td>
+          <%= f.hidden_field :order_id %>
           <td><%= f.submit "更新", class: "btn btn-success" %></td>
         <% end %>
       </tr>
