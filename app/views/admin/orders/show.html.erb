@@ -19,13 +19,13 @@
 
     <div class="field">
       <p class="font-weight-bold">支払方法</p>
-      <%= @order.payment_type %>
+      <%= Order.payment_types_i18n[@order.payment_type] %>
     </div>
 
     <div class="field">
+      <p class="font-weight-bold">注文ステータス</p>
       <%= form_with model: @order, url: order_path(@order.id) do |f| %>
-        <%= f.label "注文ステータス" %>
-        <%= f.select :status, options_from_collection_for_select(Order.all, :id, :status) %>
+        <%= f.select :status, Order.statuses.keys.map{|k| [I18n.t("enums.order.status.#{k}"),k]} %>
         <%= f.submit "更新", class: "btn btn-success" %>
       <% end %>
     </div>
@@ -43,10 +43,11 @@
     <% @order_details.each do |order_detail| %>
       <tr>
         <td><%= order_detail.item.name %></td>
-        <td><%= order_detail.amount %></td>
         <td><%= order_detail.price_tax_in %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.subtotal %></td>
         <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
-          <td><%= f.select :product_status, options_from_collection_for_select(Order_details.all, :id, :product_status) %></td>
+          <td><%= f.select :product_status, OrderDetail.product_statuses.keys.map{|k| [I18n.t("enums.order_detail.product_status.#{k}"),k]} %></td>
           <td><%= f.submit "更新", class: "btn btn-success" %></td>
         <% end %>
       </tr>
