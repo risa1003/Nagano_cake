@@ -57,7 +57,7 @@
     <tfoot>
       <tr>
         <th>商品合計</th>
-        <td><%= @order.total_payment %></td>
+        <td><%= @subtotal_amount %></td>
       </tr>
       <tr>
         <th>送料</th>
@@ -65,7 +65,7 @@
       </tr>
       <tr>
         <th>請求金額合計</th>
-        <td><%= @order.total_payment + @order.postage %></td>
+        <td><%= @order.total_payment %></td>
       </tr>
     </tfoot>
   </table>

@@ -10,7 +10,7 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     @cart_items = current_customer.cart_items.all
     @total_amount = @cart_items.sum(&:subtotal)
-    @order.total_payment = @total_amount
+    @order.total_payment = @total_amount + @order.postage
     if params[:order][:select_address] == "1"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -57,9 +57,9 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = current_customer.orders.find(params[:id])
-    @cart_items = current_customer.cart_items.all
-    @total_amount = @cart_items.sum(&:subtotal)
+    @subtotal_amount = @order.order_details.sum { |detail| detail.amount * detail.item.price_with_tax }
   end
+
 
   private
 

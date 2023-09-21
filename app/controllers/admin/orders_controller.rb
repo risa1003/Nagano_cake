@@ -2,6 +2,7 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    @subtotal_amount = @order.order_details.sum { |detail| detail.amount * detail.item.price_with_tax }
   end
 
   def update

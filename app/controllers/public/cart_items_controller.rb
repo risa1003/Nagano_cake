@@ -26,9 +26,18 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
-    @cart_item.save
+    # カート内に同一の商品が存在するか確認
+    existing_cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+    if existing_cart_item.present?
+      # カート内に同一の商品が存在する場合、数量を増やす
+      existing_cart_item.amount += params[:cart_item][:amount].to_i
+      existing_cart_item.save
+    else
+      # カート内に同一の商品が存在しない場合、新しいカートアイテムを作成
+      @cart_item = CartItem.new(cart_item_params)
+      @cart_item.customer_id = current_customer.id
+      @cart_item.save
+    end
     redirect_to cart_items_path
   end
 

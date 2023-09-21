@@ -1,18 +1,3 @@
-<table>
-  <thead>
-    <tr>
-      <th>ジャンル検索</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @genres.each do |f| %>
-    <tr>
-      <td><%= f.name %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
 <p>ようこそ、ながのCAKEへ！<br>
 このサイトは、ケーキ販売のECサイトになります。<br>
 会員でない方も商品の閲覧はできますが、<br>
@@ -21,15 +6,21 @@
 <h3>新着商品</h3>
 <table>
   <tbody>
-  <% @items.each do |f| %>
+  <% @items.each_with_index do |item, index| %>
     <tr>
-      <td><%#= image_tag f.get_item_image(200,100) %></td>
-      <td><%= f.name %></td>
-      <td><%= f.price %></td>
+      <td>
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_item_image(250, 350) %>
+        <% end %>
+      </td>
+      <td><%= item.name %></td>
+      <td><%= item.price %></td>
     </tr>
+    <% break if index == 3 %> <!-- 最初の4つの商品を表示 -->
   <% end %>
   </tbody>
 </table>
 
-<!-- 表示は4つまで -->
-<%= link_to '全ての商品を見る', items_path %>
+<% if @items.size > 4 %> <!-- 商品が5件以上ある場合のみ表示 -->
+  <%= link_to '全ての商品を見る', items_path %>
+<% end %>
